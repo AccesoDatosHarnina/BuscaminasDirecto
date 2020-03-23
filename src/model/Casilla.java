@@ -1,6 +1,7 @@
 package model;
 
 public class Casilla {
+	//Comentario hecho en la rama modelo jose
 
 	//Desde mi punto de vista la coordenada no pertenece a la casilla
 	
