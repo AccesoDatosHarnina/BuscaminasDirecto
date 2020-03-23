@@ -9,6 +9,7 @@ public class Casilla {
 	private boolean velada=true;
 	private boolean marcada=false;
 	private int minasAlrededor=0;
+	private boolean maquillado=true;
 	
 	public Casilla() {
 		
