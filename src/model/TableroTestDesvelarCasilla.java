@@ -33,8 +33,8 @@ class TableroTestDesvelarCasilla {
 					tablero.desvelarCasilla(posicion,false);
 					error = comprobarDesvelo();
 				}
-			} while (j < lado && !error);
-		} while (i < lado && !error);
+			} while (++j < lado && !error);
+		} while (++i< lado && !error);
 	}
 
 	private boolean comprobarDesvelo() {
@@ -47,8 +47,8 @@ class TableroTestDesvelarCasilla {
 				if (actual.getMinasAlrededor() == 0 && !actual.isVelada()) {
 					error = desveladasAroundMe(posicion);
 				}
-			} while (j < lado && !error);
-		} while (i < lado && !error);
+			} while (++j < lado && !error);
+		} while (++i < lado && !error);
 		return error;
 	}
 
@@ -63,8 +63,8 @@ class TableroTestDesvelarCasilla {
 				if (!posicion.equals(actual)) {
 					error = actual.isVelada();
 				}
-			} while (j < posicion.getPosY() + 1 && !error);
-		} while (i < posicion.getPosX() + 1 && !error);
+			} while (j++ < posicion.getPosY() + 1 && !error);
+		} while (i++ < posicion.getPosX() + 1 && !error);
 		return error;
 	}
 
