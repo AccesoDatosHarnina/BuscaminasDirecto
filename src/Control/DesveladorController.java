@@ -1,7 +1,8 @@
 package Control;
 
-import modelonovalido.Tablero;
+import model.Coordenada;
+import model.Tablero;
 
 public class DesveladorController {
-	
+
 }

@@ -9,5 +9,9 @@ package utiles; public class Utiles {
 		assert lado>0&& porcentaje>=0&&porcentaje<=100;
 		return lado * lado * porcentaje / 100;
 	}
-
+	public static int[] damePosicionAlrededor(int lugar) {
+		int[][] posicion = { { -1, -1 }, { -1, 0 }, { -1, +1 }, { 0, -1 }, { 0, +1 }, { +1, -1 }, { +1, 0 },
+				{ +1, +1 } };
+		return posicion[lugar];
+	}
 }
