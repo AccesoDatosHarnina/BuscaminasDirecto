@@ -1,4 +1,8 @@
-package utiles; public class Utiles {
+package utiles;
+
+import model.Coordenada;
+
+public class Utiles {
 
 	public static int dameNumero(int limite) {
 		assert limite > 0;
@@ -14,4 +18,5 @@ package utiles; public class Utiles {
 				{ +1, +1 } };
 		return posicion[lugar];
 	}
+	
 }

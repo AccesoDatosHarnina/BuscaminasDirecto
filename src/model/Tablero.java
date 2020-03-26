@@ -14,13 +14,13 @@ public class Tablero {
 
 	private void setMinasAlrededor(Coordenada posicion) {
 		casillas[posicion.getPosX()][posicion.getPosY()]
-				.setMinasAlrededor(casillas[posicion.getPosX()][posicion.getPosY()].getMinasAlrededor() + 1);
+		.setMinasAlrededor(casillas[posicion.getPosX()][posicion.getPosY()].getMinasAlrededor() + 1);
 
 	}
 
 	private void establecerMinasAlrededor(Coordenada posicionMinaCoordenada) {
 		for (int i = 0; i < 8; i++) {
-			Coordenada posicion = creaCoordenadaAlrededor(posicionMinaCoordenada, i);
+			Coordenada posicion = posicionMinaCoordenada.creaCoordenadaAlrededor(i);
 			if (validaCoordenada(posicion)) {
 				setMinasAlrededor(posicion);
 			}
@@ -81,25 +81,21 @@ public class Tablero {
 
 	}
 
-	private Coordenada creaCoordenadaAlrededor(Coordenada actual, int j2) {
-		int[] posicion = Utiles.damePosicionAlrededor(j2);
-		return new Coordenada(actual.getPosX() + posicion[0], actual.getPosY() + posicion[1]);
-	}
+
 
 	private boolean validaCoordenada(Coordenada posicion) {
 		return posicion.getPosX() >= 0 && posicion.getPosY() >= 0 && posicion.getPosX() < getLado()
 				&& posicion.getPosY() < getLado();
 	}
 
-	public void desvelarCasilla(Coordenada lugar, boolean verificar) {
-		// Recursividad
-		if ((getMinasAlrededor(lugar) == 0 || verificar) && (!isMina(lugar) && (isVelada(lugar) || verificar))
+	public void desvelarCasilla(Coordenada lugar) {
+		if ((getMinasAlrededor(lugar) == 0) && (!isMina(lugar) && (isVelada(lugar)))
 				&& !isMarcada(lugar)) {
 			setVelada(lugar, false);
 			for (int i = 0; i < 8; i++) {
-				Coordenada posicion = creaCoordenadaAlrededor(lugar, i);
+				Coordenada posicion = lugar.creaCoordenadaAlrededor(i);
 				if (validaCoordenada(posicion)) {
-					desvelarCasilla(posicion, false);
+					desvelarCasilla(posicion);
 				}
 			}
 		} else if (!isMarcada(lugar)) {
@@ -107,4 +103,8 @@ public class Tablero {
 		}
 	}
 
+	public boolean isDentroDeLosLimites(Coordenada coord) {
+		return coord.getPosX()>=0&&coord.getPosX()<getLado()&&
+				coord.getPosY()>=0&&coord.getPosY()<getLado();
+	}
 }

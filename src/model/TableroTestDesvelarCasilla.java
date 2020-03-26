@@ -15,10 +15,33 @@ class TableroTestDesvelarCasilla {
 
 	@BeforeEach
 	void setUp() {
-		lado = 4;
+		lado = 12;
 		porcentaje = 20;
 		minas = Utiles.calculaMinas(lado, porcentaje);
 		tablero = new Tablero(lado, minas);
+	}
+
+	public void mostrarTablero() {
+		System.out.println();
+		for (int i = 0; i < lado; i++) {
+			for (int j = 0; j < lado; j++) {
+				Coordenada coordenada = new Coordenada(i, j);
+				Casilla casilla = tablero.getCasilla(coordenada);
+				String letrero;
+				if (casilla.isVelada()) {
+					letrero = "#";
+					if (casilla.isMina()) {
+						letrero="X";
+					}
+				} else if (casilla.isMina()) {
+					letrero = "M";
+				} else {
+					letrero = String.valueOf(casilla.getMinasAlrededor());
+				}
+				System.out.print(" " + letrero);
+			}
+			System.out.println();
+		}
 	}
 
 	@Test
@@ -29,12 +52,16 @@ class TableroTestDesvelarCasilla {
 			do {
 				Coordenada posicion = new Coordenada(i, j);
 				Casilla actual = tablero.getCasilla(posicion);
+				mostrarTablero();
 				if (!actual.isMina() && actual.getMinasAlrededor() == 0 && actual.isVelada()) {
-					tablero.desvelarCasilla(posicion,false);
+					tablero.desvelarCasilla(posicion);
 					error = comprobarDesvelo();
 				}
+				mostrarTablero();
 			} while (++j < lado && !error);
-		} while (++i< lado && !error);
+			j = 0;
+		} while (++i < lado && !error);
+		assertTrue(!error);
 	}
 
 	private boolean comprobarDesvelo() {
@@ -48,23 +75,22 @@ class TableroTestDesvelarCasilla {
 					error = desveladasAroundMe(posicion);
 				}
 			} while (++j < lado && !error);
+			j = 0;
 		} while (++i < lado && !error);
 		return error;
 	}
 
 	private boolean desveladasAroundMe(Coordenada posicion) {
 		boolean error = false;
-		int i = posicion.getPosX() - 1, j = posicion.getPosY() - 1;
-		do {
-			do {
-				Coordenada alrededor = new Coordenada(i, j);
-				//TODO dentro de los limites si no, falla
+		for (int i = 0; i < 8&&!error; i++) {
+			Coordenada alrededor = posicion.creaCoordenadaAlrededor(i);
+			if (tablero.isDentroDeLosLimites(alrededor)) {
 				Casilla actual = tablero.getCasilla(alrededor);
 				if (!posicion.equals(actual)) {
 					error = actual.isVelada();
 				}
-			} while (j++ < posicion.getPosY() + 1 && !error);
-		} while (i++ < posicion.getPosX() + 1 && !error);
+			}
+		}
 		return error;
 	}
 

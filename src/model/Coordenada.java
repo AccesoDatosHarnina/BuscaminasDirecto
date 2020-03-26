@@ -1,5 +1,7 @@
 package model;
 
+import utiles.Utiles;
+
 public class Coordenada {
 	//clases de apoyo
 	private int posX,posY;
@@ -38,5 +40,8 @@ public class Coordenada {
 		}
 		return retorno;
 	}
-
+	public Coordenada creaCoordenadaAlrededor(int j2) {
+		int[] posicion = Utiles.damePosicionAlrededor(j2);
+		return new Coordenada(this.getPosX() + posicion[0], this.getPosY() + posicion[1]);
+	}
 }
