@@ -30,7 +30,7 @@ public class Coordenada {
 	public boolean equals(Object obj) {
 		boolean retorno=false;
 		if(obj!=null) {
-			retorno=this.equals(obj);
+			retorno=this==obj;
 			if(!retorno && obj instanceof Coordenada) {
 				Coordenada coordenada=(Coordenada)obj;
 				retorno=this.getPosX()==coordenada.getPosX()&&this.getPosY()==coordenada.getPosY();
