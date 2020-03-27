@@ -53,7 +53,9 @@ public class Tablero {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	public boolean marcarCasilla(Coordenada coord) {
+		return getCasilla(coord).marcar();
+	}
 	
 	
 }

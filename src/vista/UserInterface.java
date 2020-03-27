@@ -142,8 +142,8 @@ public class UserInterface extends JFrame {
 		contentPane.add(huecoBotonera, BorderLayout.CENTER);
 		huecoBotonera.setLayout(new BoxLayout(huecoBotonera, BoxLayout.X_AXIS));
 		// Escribo la configuracion por defecto
-		actualizaDensidad(densidad);
-		actualizaDificultad(dificultad);
+		actualizaDensidad(getDensidad());
+		actualizaDificultad(getDificultad());
 	}
 
 	public JPanel getHuecoBotonera() {
@@ -152,12 +152,20 @@ public class UserInterface extends JFrame {
 
 	protected void actualizaDensidad(Densidad actual) {
 		densidad = actual;
-		lblDensidad.setText(String.valueOf(densidad.getPorcentaje()));
+		lblDensidad.setText(String.valueOf(getDensidad().getPorcentaje()));
 	}
 
 	private void actualizaDificultad(Dificultad actual) {
 		dificultad = actual;
-		lblDificultad.setText(String.valueOf(dificultad.getLado()));
+		lblDificultad.setText(String.valueOf(getDificultad().getLado()));
+	}
+
+	public Dificultad getDificultad() {
+		return dificultad;
+	}
+
+	public Densidad getDensidad() {
+		return densidad;
 	}
 
 }
