@@ -10,8 +10,7 @@ public class Tablero {
 		colocarMinas(lado,numeroBombas);
 	}
 	
-	public Tablero() {
-	}
+
 	
 	public Casilla[][] getCasillas() {
 		return casillas;
@@ -34,6 +33,11 @@ public class Tablero {
 	
 	private void crearTablero(int lado) {
 		this.casillas=new Casilla[lado][lado];
+		for (int i = 0; i < casillas.length; i++) {
+			for (int j = 0; j < casillas.length; j++) {
+				casillas[i][j]=new Casilla();
+			}
+		}
 	}
 
 	//TODO antes todo esto era private
@@ -49,9 +53,8 @@ public class Tablero {
 		return getCasilla(posicion).isMina();
 	}
 
-	public boolean desvelarCasilla(Coordenada coordenada) {
-		// TODO Auto-generated method stub
-		return false;
+	public void desvelarCasilla(Coordenada coordenada) {
+		 getCasilla(coordenada).setVelada(false);
 	}
 	public boolean marcarCasilla(Coordenada coord) {
 		return getCasilla(coord).marcar();

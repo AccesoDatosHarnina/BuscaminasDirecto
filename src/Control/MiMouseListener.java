@@ -10,7 +10,7 @@ import model.Coordenada;
 import utiles.ConversorGrafico;
 import vista.Botonera;
 
-public class MiMouseListener extends MouseAdapter {
+public class MiMouseListener extends MouseAdapter{
 	private DesveladorController desveladorController;
 
 
@@ -26,12 +26,14 @@ public class MiMouseListener extends MouseAdapter {
 	public void mouseClicked(MouseEvent e) {
 		super.mouseClicked(e);
 		JButton boton = ((JButton) e.getSource());
+		
 		if(SwingUtilities.isLeftMouseButton(e)) {
 			desveladorController.desvelarCasilla(boton.getName());
 		}
 		if (SwingUtilities.isRightMouseButton(e)) {
 			// queremos marcar
 		}
-		desveladorController.actualizaTodo();
+		Botonera botonera=((Botonera)boton.getParent());
+		botonera.actualizaBotonera(desveladorController.getEntornoGrafico());
 	}
 }
