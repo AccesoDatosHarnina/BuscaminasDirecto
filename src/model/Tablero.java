@@ -12,6 +12,13 @@ public class Tablero {
 	
 
 	
+	public Tablero() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	public Casilla[][] getCasillas() {
 		return casillas;
 	}
