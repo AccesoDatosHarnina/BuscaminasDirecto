@@ -11,6 +11,7 @@ import vista.UserInterface;
 public class ParaUI extends UserInterface {
 	DesveladorController desveladorController;
 	Tablero tablero;
+	boolean juego=true;
 
 	public ParaUI() {
 		btnReiniciar.addActionListener(new ActionListener() {

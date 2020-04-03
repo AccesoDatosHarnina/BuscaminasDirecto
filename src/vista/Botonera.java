@@ -29,6 +29,7 @@ public class Botonera extends JPanel {
 			}
 			//Al estar dentro de la botonera (el objeto)
 			actualizaBotonera(desveladorController.getEntornoGrafico());
+			
 		}
 	};
 	

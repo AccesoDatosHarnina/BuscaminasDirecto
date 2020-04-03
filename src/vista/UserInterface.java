@@ -40,6 +40,7 @@ public class UserInterface extends JFrame {
 	Dificultad dificultad = Dificultad.pequeno;
 	Densidad densidad = Densidad.facil;
 	private JPanel huecoBotonera;
+	private JMenuItem mntmNewMenuItem_2;
 
 	/**
 	 * Create the frame.
@@ -98,6 +99,11 @@ public class UserInterface extends JFrame {
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_1);
+		
+		mntmNewMenuItem_2 = new JMenuItem("disabled");
+		menuBar.add(mntmNewMenuItem_2);
+		
+		
 
 		lblSonido = new JLabel();
 		menuBar.add(lblSonido);
